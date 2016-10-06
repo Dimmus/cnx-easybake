@@ -12,6 +12,7 @@ from cssselect2.extensions import extensions
 from copy import deepcopy
 from uuid import uuid4
 import requests
+from requests_file import FileAdapter
 
 verbose = False
 
@@ -253,7 +254,7 @@ class Oven():
                     mycopy.tail = None
                     grouped_insert(target, mycopy)
                 elif action == 'fetchurl':
-                    nodes = fetch_nodes(value)
+                    nodes = fetch_nodes(*value)
                     for node in nodes:
                         target.tree.append(node)
                 else:
@@ -1049,7 +1050,12 @@ class Oven():
                     url_args = split(term.arguments, ',')
                     url_val = self.eval_string_value(element,
                                                      url_args[0])[0]
-                    actions.append(('fetchurl', url_val))
+                    url_def = ''
+                    if len(url_args) > 1:
+                        url_def = self.eval_string_value(element,
+                                                         url_args[1])[0]
+
+                    actions.append(('fetchurl', (url_val, url_def)))
                 else:
                     logger.warning(u"Unknown function {}".format(
                         term.name).encode('utf-8'))
@@ -1386,13 +1392,40 @@ def copy_w_id_suffix(elem, suffix="_copy"):
     return mycopy
 
 
-def fetch_nodes(url):
+def fetch_nodes(url, css=None):
     """Get the contents at url, return parsed nodes child of body tag."""
-    req = requests.get(url)
+    from cssselect import parse, HTMLTranslator
+
+    session = requests.Session()
+    if url.startswith('file://'):
+        session.mount('file://', FileAdapter())
+    req = session.get(url)
+
     if req.ok:
         html = etree.HTML(req.text)
-        nodes = html.xpath('body/*')
+
+        if css:
+            sel = parse(css.strip('" '))[0]
+            xpath = HTMLTranslator().selector_to_xpath(sel)
+        else:
+            xpath = None
+
+        if '#' in url:
+            url, frag = url.split('#', 1)
+            root = html.xpath('[@id="{}"]'.format(frag))[0]
+            if xpath:
+                nodes = root.xpath(xpath)
+            else:
+                nodes = [root]
+        else:
+            if xpath:
+                nodes = html.xpath(xpath)
+            else:
+                nodes = html.xpath('body')
+                nodes[0].tag = 'div'
+
         return nodes
+
     else:
         logger.warning(u'Failure to fetch url: {}'.format(url))
         return []
