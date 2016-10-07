@@ -13,6 +13,8 @@ install_requires = (
     'cssselect2',
     'tinycss2',
     'lxml',
+    'requests',
+    'requests_file',
     )
 
 tests_require = (
