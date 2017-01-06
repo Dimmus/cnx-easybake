@@ -1,11 +1,15 @@
 cnx-easybake DEBUG Passes: ['default']
 cnx-easybake DEBUG Rule (11): div[data-type="chapter"]::before 
-cnx-easybake DEBUG     default: class boc-preface
-cnx-easybake DEBUG IdentToken as string: boc-preface
+cnx-easybake DEBUG Rule (11): div[data-type="chapter"]::before 
+cnx-easybake DEBUG     default: content "This is a very small page with a string on it"
+cnx-easybake DEBUG Rule (11): div[data-type="chapter"]::before 
+cnx-easybake DEBUG     default: container div
+cnx-easybake DEBUG Rule (11): div[data-type="chapter"]::before 
 cnx-easybake DEBUG     default: data-type composite-page
 cnx-easybake DEBUG IdentToken as string: composite-page
-cnx-easybake DEBUG     default: container div
-cnx-easybake DEBUG     default: content "This is a very small page with a string on it"
+cnx-easybake DEBUG Rule (11): div[data-type="chapter"]::before 
+cnx-easybake DEBUG     default: class boc-preface
+cnx-easybake DEBUG IdentToken as string: boc-preface
 cnx-easybake DEBUG Rule (2): div[data-type="chapter"] section.practice-test 
 cnx-easybake DEBUG     default: string-set childclasses string(childclasses) " " attr(class)
 cnx-easybake DEBUG IdentToken as string: childclasses

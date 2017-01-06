@@ -1,19 +1,34 @@
 cnx-easybake DEBUG Passes: ['default']
 cnx-easybake DEBUG Rule (2): div[data-type="chapter"] table::after 
-cnx-easybake DEBUG     default: content "This is a table title"
-cnx-easybake DEBUG     default: container span
-cnx-easybake DEBUG     default: class table-title
-cnx-easybake DEBUG IdentToken as string: table-title
-cnx-easybake DEBUG     default: move-to table-title
 cnx-easybake DEBUG Rule (8): div[data-type="chapter"] table::after 
-cnx-easybake DEBUG     default: content "This is a table caption"
-cnx-easybake DEBUG     default: container span
+cnx-easybake DEBUG Rule (8): div[data-type="chapter"] table::after 
+cnx-easybake DEBUG     default: move-to table-caption
+cnx-easybake DEBUG Rule (8): div[data-type="chapter"] table::after 
 cnx-easybake DEBUG     default: class table-caption
 cnx-easybake DEBUG IdentToken as string: table-caption
-cnx-easybake DEBUG     default: move-to table-caption
+cnx-easybake DEBUG Rule (8): div[data-type="chapter"] table::after 
+cnx-easybake DEBUG     default: container span
+cnx-easybake DEBUG Rule (8): div[data-type="chapter"] table::after 
+cnx-easybake DEBUG     default: content "This is a table caption"
+cnx-easybake DEBUG Rule (14): div[data-type="chapter"] table::outside 
+cnx-easybake DEBUG     default: content pending(table-title) content() pending(table-caption)
+cnx-easybake INFO table-title empty bucket
+cnx-easybake DEBUG Rule (14): div[data-type="chapter"] table::outside 
+cnx-easybake DEBUG     default: container div
 cnx-easybake DEBUG Rule (14): div[data-type="chapter"] table::outside 
 cnx-easybake DEBUG     default: class table-wrapper
 cnx-easybake DEBUG IdentToken as string: table-wrapper
-cnx-easybake DEBUG     default: container div
-cnx-easybake DEBUG     default: content pending(table-title) content() pending(table-caption)
 cnx-easybake DEBUG Recipe default length: 18
+Traceback (most recent call last):
+  File "/Users/phil/github/cnx/cnx-easybake/bin/cnx-easybake", line 9, in <module>
+    load_entry_point('cnx-easybake==0.7.0', 'console_scripts', 'cnx-easybake')()
+  File "/Users/phil/github/cnx/cnx-easybake/lib/python2.7/site-packages/cnx_easybake-0.7.0-py2.7.egg/cnxeasybake/scripts/main.py", line 84, in main
+    args.coverage_file, args.use_repeatable_ids)
+  File "/Users/phil/github/cnx/cnx-easybake/lib/python2.7/site-packages/cnx_easybake-0.7.0-py2.7.egg/cnxeasybake/scripts/main.py", line 21, in easybake
+    oven.bake(html_doc, last_step)
+  File "/Users/phil/github/cnx/cnx-easybake/lib/python2.7/site-packages/cnx_easybake-0.7.0-py2.7.egg/cnxeasybake/oven.py", line 268, in bake
+    grouped_insert(target, value)
+  File "/Users/phil/github/cnx/cnx-easybake/lib/python2.7/site-packages/cnx_easybake-0.7.0-py2.7.egg/cnxeasybake/oven.py", line 1338, in grouped_insert
+    t.parent.insert(t.parent.index(t.tree), value)
+  File "src/lxml/lxml.etree.pyx", line 1233, in lxml.etree._Element.index (src/lxml/lxml.etree.c:53901)
+ValueError: Element is not a child of this node.

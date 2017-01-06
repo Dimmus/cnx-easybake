@@ -1,7 +1,8 @@
 /* Two param attr and string functions - with default */
 li {
-  string-set: itemtype attr(data-type, 'item');
+  /* swapping the following lines should not cause a stack trace */
   string-set: itemclass attr(class, 'item');
+  string-set: itemtype attr(data-type, 'item');
 }
 li::after {
   content: "The type here: " string(itemtype, 'None!');

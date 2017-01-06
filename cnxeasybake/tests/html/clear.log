@@ -2,6 +2,7 @@ cnx-easybake DEBUG Passes: ['default']
 cnx-easybake DEBUG Rule (2): div[data-type="chapter"] section.key-equations 
 cnx-easybake DEBUG     default: move-to trash
 cnx-easybake DEBUG Rule (6): body::after 
+cnx-easybake DEBUG Rule (6): body::after 
 cnx-easybake DEBUG     default: content clear(trash) clear(notrash)
 cnx-easybake INFO notrash empty bucket
 cnx-easybake DEBUG Recipe default length: 5

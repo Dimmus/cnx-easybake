@@ -4,13 +4,13 @@ div.index::before {
     content: ", ";
     move-to: indexDivider;
 }
-span.index-item:not(:last-child)::outside {
+/*span.index-item:not(:last-child)::outside {
     container: span;
     content: content() nodes(indexDivider);
     class: extra;
-}
+}*/
 
-span.index-item:last-child::outside {
+/*span.index-item:last-child::outside {
     container: span;
     content: content();
     class: extra;
@@ -22,4 +22,4 @@ span.extra > *:pass(2) {
 
 div.index:deferred:pass(2) {
     content: pending(realIndex)
-}
+}*/
